@@ -10,13 +10,13 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Products
   try {
     const categoryData = await Category.findAll({
-    include: [{model: Product }]
-  });
-  if (!categoryData){
-    res.status(404).json({message: 'no categories found'})
+      include: [{ model: Product }]
+    });
+    if (!categoryData) {
+      res.status(404).json({ message: 'no categories found' })
+    }
+    res.status(200).json(categoryData)
   }
-  res.status(200).json(categoryData)
-}
   catch (error) {
     res.status(500).json(error)
   }
@@ -28,13 +28,14 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Products
   try {
     const categoryData = await Category.findByPk(req.params.id, {
-      include: [{model: Product}]
+      include: [{ model: Product }]
     })
 
     if (!categoryData) {
-      res.status(404).json({ message: 'No Category ID Found'})
+      res.status(404).json({ message: 'No Category ID Found' })
       return;
     }
+    res.status(200).json(categoryData);
   }
   catch (error) {
     res.status(500).json(err)
@@ -48,9 +49,9 @@ router.post('/', async (req, res) => {
       id: req.body.id,
       category_name: req.body.category_name
     })
-    res.status(200).json(newCategory + " has been created")
+    res.status(200).json(req.body.category_name + " has been created")
   }
-  catch (err){
+  catch (err) {
     res.status(500).json(err)
   }
 });
@@ -61,28 +62,30 @@ router.put('/:id', async (req, res) => {
     const updateCategory = await Category.update({
       id: req.body.id,
       category_name: req.body.category_name
-    }, 
-    {
-      where: {
-        id: req.params.id
-      }
-    })
+    },
+      {
+        where: {
+          id: req.params.id
+        }
+      })
     res.status(200).json(updateCategory)
   }
-  catch (err){
+  catch (err) {
     res.status(500).json(err)
   }
 });
 
 router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
-  try {const deleteCategory = await Category.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-  res.status(200).json(deleteCategory)}
-  catch (err){
+  try {
+    const deleteCategory = await Category.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.status(200).json(req.params.category_name + ' has been deleted')
+  }
+  catch (err) {
     res.status(500).json(err)
   }
 });
