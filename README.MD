@@ -106,5 +106,8 @@ ORM ECommerce is an application for ECommerce companies to keep track of differe
             i. /api/:type/:ID , where type is category, id, or tag, and ID is the ID number of object
             ii. Once you delete something, you cannot get it back!
 
+GitHub Repo: https://github.com/shawnbandy/ORM_ECommerce
+Link to Video: https://www.youtube.com/watch?v=98Jpk3fuqgk
 
+Image: ![Alt text](/Assets/gif.gif)
             
