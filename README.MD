@@ -60,5 +60,7 @@
             iii. tag_id
                 a. Integer
                 b. References tag(id)
-    2. Product belongs to category and a category can have many product models
-    3. Product belongs to tag models and tag belong to many product models 
+    2. Product belongs to category
+    3. category has many product models
+    4. product belongs to many tag models
+    5. Tag belongs to many product models
